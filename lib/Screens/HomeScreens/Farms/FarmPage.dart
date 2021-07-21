@@ -30,7 +30,7 @@ class _FarmPageState extends State<FarmPage> {
   void initState() {
     // TODO: implement initState
     super.initState();
-    GetServices().getUnapprovedFarms();
+    GetServices().getApprovedFarms();
   }
   @override
   Widget build(BuildContext context) {

@@ -1,14 +1,8 @@
-import 'dart:convert';
-
 import 'package:dio/dio.dart';
-import 'package:font_awesome_flutter/font_awesome_flutter.dart';
-import 'package:neerxdashboard/FunctionsAndConstants/constants.dart';
 import 'package:http/http.dart' as http;
 import 'package:neerxdashboard/FunctionsAndConstants/functions.dart';
-import 'package:neerxdashboard/Models/AdminModel.dart';
 class GetServices
 {
- // Admin admin = Admin();
     getUnapprovedFarms()async
     {
       String url = "http://13.232.234.174:8888/admin-service/approval/unapprovedlist";
@@ -16,7 +10,7 @@ class GetServices
       print("Call time Token: ${accessToken}");
       Map<String,dynamic>header={
         "Authorization":accessToken,
-      //  "Content-Type": 'application/json'
+        "Content-Type": 'application/json'
       };
       var response = await Dio().get(url,options: Options(
         headers: header
@@ -25,14 +19,14 @@ class GetServices
     }
     getApprovedFarms()async
     {
-      String url = "http://13.232.234.174:8888/admin-service/approval/approvedlist";
+      Uri url = Uri.parse("http://13.232.234.174:8888/admin-service/approval/approvedlist");
       String accessToken = await readData('token');
       print("Call time Token: $accessToken");
       Map<String,String>header={
        "Content-Type": 'application/json',
         "Authorization":accessToken,
       };
-      var response = await http.get(Uri.parse(url),
+      var response = await http.get(url,
           headers: header
       );
       print(response.statusCode);
